@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import { useSelector } from 'react-redux'
 import './navigation.css'
 
 // const getClassName = ({isActive}) => {
@@ -7,14 +8,11 @@ import './navigation.css'
 // }
 
 export const Navigation = () => {
+    const isLogedIn = useSelector(state => state.auth.isLoggedIn)
     return (
-            <ul className="listlink">
-                <li>
-                    <NavLink to="/" className="item">Home</NavLink>
-                </li>
-                <li>
-                    <NavLink to="/phonebook" className="item">Phonebook</NavLink>
-                </li>
-            </ul>
+        <div className="listlink">
+            <NavLink to="/" className="item">Home</NavLink>
+            {isLogedIn && <NavLink to="/phonebook" className="item">Phonebook</NavLink>}
+        </div>
     )
 }
