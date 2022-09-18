@@ -1,66 +1,63 @@
-
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import * as api from '../services/api/api'
-
-
+import * as api from '../services/api/api';
 
 const register = createAsyncThunk(
-    'auth/register', 
-    async(data, {rejectWithValue}) => {
-        try {
-            const result = await api.register(data);
-            api.token.set(data.token);
-            return result;
-        } catch ({response}) {
-            const {status, data} = response;
-            const error = {
-                status,
-                message: data.message,
-            }
-            return rejectWithValue(error);
-        }
+  'auth/register',
+  async (data, { rejectWithValue }) => {
+    try {
+      const result = await api.register(data);
+      api.token.set(data.token);
+      return result;
+    } catch ({ response }) {
+      const { status, data } = response;
+      const error = {
+        status,
+        message: data.message,
+      };
+      return rejectWithValue(error);
     }
-//   async credentials => {
-//   try {
-//     const { data } = await axios.post('/users/signup', credentials);
-//     token.set(data.token);
-//     return data;
-//   } catch (error) {
-//     // TODO: Добавить обработку ошибки error.message
-//   }
-// }
+  }
+  //   async credentials => {
+  //   try {
+  //     const { data } = await axios.post('/users/signup', credentials);
+  //     token.set(data.token);
+  //     return data;
+  //   } catch (error) {
+  //     // TODO: Добавить обработку ошибки error.message
+  //   }
+  // }
 );
 
 const login = createAsyncThunk(
-  "auth/login",
-  async(data, {rejectWithValue}) => {
-      try {
-          const result = await api.login(data);
-          return result;
-      } catch ({response}) {
-          const {status, data} = response;
-          const error = {
-              status,
-              message: data.message,
-          }
-          return rejectWithValue(error);
-      }
+  'auth/login',
+  async (data, { rejectWithValue }) => {
+    try {
+      const result = await api.login(data);
+      return result;
+    } catch ({ response }) {
+      const { status, data } = response;
+      const error = {
+        status,
+        message: data.message,
+      };
+      return rejectWithValue(error);
+    }
   }
-)
+);
 
 /*
  * POST @ /users/logout
  * headers: Authorization: Bearer token
  * После успешного логаута, удаляем токен из HTTP-заголовка
  */
-// const logOut = createAsyncThunk('auth/logout', async () => {
-//   try {
-//     await axios.post('/users/logout');
-//     api.token.unset();
-//   } catch (error) {
-//     // TODO: Добавить обработку ошибки error.message
-//   }
-// });
+const logOut = createAsyncThunk('auth/logout', async () => {
+  try {
+    await api.logOut();
+    api.token.unset();
+  } catch (error) {
+    // TODO: Добавить обработку ошибки error.message
+  }
+});
 /*
  * GET @ /users/current
  * headers:
@@ -93,7 +90,7 @@ const login = createAsyncThunk(
 
 const operations = {
   register,
-  // logOut,
+  logOut,
   login,
   // fetchCurrentUser,
 };

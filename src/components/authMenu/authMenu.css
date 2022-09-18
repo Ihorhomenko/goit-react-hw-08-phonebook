@@ -1,0 +1,22 @@
+.authMail {
+  color: aliceblue;
+  font-size: 15px;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.authBtn {
+  outline: none;
+  border: 1px solid aliceblue;
+  border-radius: 5px;
+  font-size: 12px;
+  background-color: inherit;
+  color: aliceblue;
+
+  transition: all 350ms linear;
+}
+
+.authBtn:hover {
+  background-color: aliceblue;
+  color: blue;
+}
