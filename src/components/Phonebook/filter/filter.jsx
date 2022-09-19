@@ -1,25 +1,25 @@
 import { useDispatch } from 'react-redux';
 import { addFilter } from 'redux/filterSlice';
-import './filter.css'
+import Form from 'react-bootstrap/Form';
+import './filter.css';
 
 const Filter = () => {
-    const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-    const handleInputFilter = e => {
-        const filterValue = e.currentTarget.value;
-        dispatch(addFilter(filterValue))
-    }
+  const handleInputFilter = e => {
+    const filterValue = e.currentTarget.value;
+    dispatch(addFilter(filterValue));
+  };
 
-        return (
-            <label className='filter'>
-                Find contacts by name
-                <input className='filter-input' onChange={handleInputFilter}
-                    type="text"
-                    name="name"
-                    pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"/>
-            </label>
-        )
-    }
-
+  return (
+    <Form.Group className="mb-3" controlId="formBasicText">
+      <Form.Control
+        type="text"
+        placeholder="Search"
+        onChange={handleInputFilter}
+      />
+    </Form.Group>
+  );
+};
 
 export default Filter;

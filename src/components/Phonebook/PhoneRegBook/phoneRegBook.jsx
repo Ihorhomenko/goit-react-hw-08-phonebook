@@ -1,53 +1,48 @@
 import { useDispatch } from 'react-redux';
 import { addContact } from 'redux/contactsOperation';
-import './phoneRegBook.css'
-
+import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
 
 const PhoneRegBook = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const handleSubmit = e => {
     e.preventDefault();
     const form = e.currentTarget;
-    const name = form.elements.name.value;
-    const number = form.elements.number.value;
+    const name = form.elements.formHorizontalName.value;
+    const number = form.elements.formHorizontalPhone.value;
     dispatch(addContact({ name, number }));
     form.reset();
   };
 
-    return (
-        <form onSubmit={handleSubmit}>
-        
-        <label className="label">
-          {' '}
-          Name
-          <input
-            className="intut-phonebook"
-            type="text"
-            name="name"
-            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-            required
-          />
-        </label>
-        <label className="label">
-          {' '}
-          Number
-          <input
-            className="intut-phonebook"
-            type="tel"
-            name="number"
-            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-            required
-          />
-        </label>
+  return (
+    <Form onSubmit={handleSubmit}>
+      <Form.Group as={Row} className="mb-3" controlId="formHorizontalName">
+        <Form.Label column sm={2}>
+          Name your friend
+        </Form.Label>
+        <Col sm={10}>
+          <Form.Control type="text" placeholder="Name" />
+        </Col>
+      </Form.Group>
 
-        <button className="btn-phonebook" type="submit">
-          Add contacts
-        </button>
-      </form>
-    )
-}
+      <Form.Group as={Row} className="mb-3" controlId="formHorizontalPhone">
+        <Form.Label column sm={2}>
+          Phone Number
+        </Form.Label>
+        <Col sm={10}>
+          <Form.Control type="phone" placeholder="Number" />
+        </Col>
+      </Form.Group>
+      <Form.Group as={Row} className="mb-3">
+        <Col sm={{ span: 10, offset: 2 }}>
+          <Button type="submit">Add contact</Button>
+        </Col>
+      </Form.Group>
+    </Form>
+  );
+};
 
-export default PhoneRegBook
+export default PhoneRegBook;

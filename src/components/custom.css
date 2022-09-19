@@ -1,0 +1,16 @@
+.list-group-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.list-group {
+  margin-top: 15px;
+}
+
+.btn-primary {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}

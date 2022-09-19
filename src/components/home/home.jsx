@@ -1,3 +1,4 @@
+import './home.css';
 export const Home = () => {
-    return <h1>Maks SHLYAPA</h1>
-}
+  return <div className="homeBg"></div>;
+};
