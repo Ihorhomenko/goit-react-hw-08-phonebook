@@ -10,8 +10,8 @@ const PhoneRegBook = () => {
     e.preventDefault();
     const form = e.currentTarget;
     const name = form.elements.name.value;
-    const phone = form.elements.number.value;
-    dispatch(addContact({ name, phone }));
+    const number = form.elements.number.value;
+    dispatch(addContact({ name, number }));
     form.reset();
   };
 

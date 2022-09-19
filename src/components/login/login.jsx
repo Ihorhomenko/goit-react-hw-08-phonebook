@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 import operations from 'redux/authOperation';
 
 import './login.css';
@@ -9,8 +11,8 @@ export const Login = () => {
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
 
-  const handleChange = ({ target: { name, value } }) => {
-    switch (name) {
+  const handleChange = ({ target: { type, value } }) => {
+    switch (type) {
       case 'email':
         return setEmail(value);
       case 'password':
@@ -28,30 +30,20 @@ export const Login = () => {
   };
 
   return (
-    <form className="form" onSubmit={handleSubmit} autoComplete="off">
-      <label className="label">
-        Mail
-        <input
-          className="input"
-          type="email"
-          name="email"
-          value={email}
-          onChange={handleChange}
-        />
-      </label>
-      <label className="label">
-        Password
-        <input
-          className="input"
-          type="password"
-          name="password"
-          value={password}
-          onChange={handleChange}
-        />
-      </label>
-      <button className="formBtn" type="submit">
-        Log in
-      </button>
-    </form>
+    <Form onSubmit={handleSubmit}>
+      <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Label>Email address</Form.Label>
+        <Form.Control type="email" placeholder="Enter email" onChange={handleChange}/>
+      </Form.Group>
+
+      <Form.Group className="mb-3" controlId="formBasicPassword">
+        <Form.Label>Password</Form.Label>
+        <Form.Control type="password" placeholder="Password" onChange={handleChange}/>
+      </Form.Group>
+      
+      <Button variant="primary" type="submit">
+        LogIn
+      </Button>
+    </Form>
   );
 };

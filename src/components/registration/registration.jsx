@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import operations from 'redux/authOperation';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 
 export const Registration = () => {
     const dispatch = useDispatch();
@@ -8,9 +10,9 @@ export const Registration = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('')
 
-    const handleChange = ({ target: { name, value } }) => {
-        switch (name) {
-          case 'name':
+    const handleChange = ({ target: { type, value } }) => {
+        switch (type) {
+          case 'text':
             return setName(value);
           case 'email':
             return setEmail(value);
@@ -30,32 +32,22 @@ export const Registration = () => {
       };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <label>
-                Name
-                <input 
-                type="name"
-                name="name"
-                value={name}
-                onChange={handleChange}/>
-            </label>
-            <label>
-                Mail
-                <input
-                type="email"
-                name="email"
-                value={email}
-                onChange={handleChange}/>
-            </label>
-            <label>
-                Password
-                <input
-                type="password"
-                name="password"
-                value={password}
-                onChange={handleChange}/>
-            </label>
-            <button type="submit">Registration</button>
-        </form>
+      <Form onSubmit={handleSubmit}>
+      <Form.Group className="mb-3" controlId="formBasicName">
+        <Form.Label>Name</Form.Label>
+        <Form.Control type="text" placeholder="Enter name" onChange={handleChange}/>
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="formBasicEmail" >
+        <Form.Label>Email</Form.Label>
+        <Form.Control type="email" placeholder="Enter email" onChange={handleChange}/>
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="formBasicPassword">
+        <Form.Label>Password</Form.Label>
+        <Form.Control type="password" placeholder="Password" onChange={handleChange}/>
+      </Form.Group>
+      <Button variant="primary" type="submit">
+        Submit
+      </Button>
+    </Form>
     )
 }

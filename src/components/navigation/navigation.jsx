@@ -11,7 +11,7 @@ export const Navigation = () => {
     const isLogedIn = useSelector(state => state.auth.isLoggedIn)
     return (
         <div className="listlink">
-            <NavLink to="/" className="item">Home</NavLink>
+            <NavLink to="/goit-react-hw-08-phonebook" className="item">Home</NavLink>
             {isLogedIn && <NavLink to="/phonebook" className="item">Phonebook</NavLink>}
         </div>
     )

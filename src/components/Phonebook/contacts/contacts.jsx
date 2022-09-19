@@ -1,18 +1,21 @@
 import { useDispatch } from 'react-redux';
 import { removeContact } from 'redux/contactsOperation';
-import './contacts.css'
+import ListGroup from 'react-bootstrap/ListGroup';
+import Button from 'react-bootstrap/Button';
+
 
 const Contacts = ({ contacts }) => {
   const dispatch = useDispatch()
   return (
-    <ul className='contacts-list'>
+    <ListGroup>
       {contacts.map(el => (
-        <li className='contacts-item' key={el.id}> 
-        {`${el.name}: ${el.phone}`}
-        <button className='contacts-btn' type='button' onClick={() => dispatch(removeContact(el.id))}>Delete</button>
-        </li>
+        <ListGroup.Item key={el.id} variant="dark" > 
+        {`${el.name}: ${el.number}`}
+        <Button variant="outline-danger" type='button' onClick={() => dispatch(removeContact(el.id))}>Delete</Button>
+        </ListGroup.Item>
       ))}
-    </ul>
+
+    </ListGroup>
   );
 };
 // 
