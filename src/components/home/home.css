@@ -1,0 +1,8 @@
+.homeBg {
+  width: 100%;
+  height: 70vh;
+  background-image: url(../../img/fon.jpeg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}

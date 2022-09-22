@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-
 const instance = axios.create({
   baseURL: 'https://connections-api.herokuapp.com',
 });
@@ -44,6 +43,6 @@ export const logOut = async () => {
 };
 
 export const currentUser = async () => {
-  const { data: result } = await instance.post('/users/current');
-  return result
-}
+  const { data: result } = await instance.get('/users/current');
+  return result;
+};
